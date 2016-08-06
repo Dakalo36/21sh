@@ -6,7 +6,7 @@
 /*   By: dnematan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 16:04:45 by dnematan          #+#    #+#             */
-/*   Updated: 2016/08/04 18:02:59 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/08/06 17:35:13 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,19 @@ char	*get_path(char **env, char *args)
 	char	*s;
 
 	i = 0;
-//	ft_putstr("get_path\n");
 	while (env[i])
 	{
 		if (ft_strncmp("PATH", env[i], 4) == 0)
 		{
-//			ft_putstr("found_path\n");
 			str = ft_strsplit(env[i], '=');
 			re = ft_strsplit(str[1], ':');
 			n = 0;
 			while (re[n++])
 			{
-//				ft_putstr("in while\n");
 				s = ft_strjoin(re[n], "/");
 				s = ft_strcat(s, args);
 				if (access(s, F_OK) == 0)
-				{
-//					ft_putstr("found!\n");
-//					ft_putstr(s);
-//					ft_putstr("\n");
 					return (s);
-				}
 			}
 		}
 		i++;
@@ -49,14 +41,38 @@ char	*get_path(char **env, char *args)
 	return (NULL);
 }
 
-char	*get_com(char *str)
+void	print_only(char *str)
 {
-	char 	**split;
-	int		i;
+	int i;
 
 	i = 0;
-	split = ft_strsplit(str, '/');
-	while (split[i])
+	if (str[i] == '"')
 		i++;
-	return (split[i]);
+	while (str[i] != '"' && str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	ft_putchar(' ');
+}
+
+void	func_print_env(char *args, char **env)
+{
+	int 	i;
+	char	*str;
+	int		len;
+
+	i = 0;
+	str = ft_strdup(++args);
+	len = ft_strlen(str);
+	while(env[i])
+	{
+		if (ft_strncmp(str, env[i], len) == 0)
+		{
+			ft_putstr((const char*)get_homepath(str, env));
+			ft_putchar('\n');
+		}
+			
+		i++;
+	}	
 }

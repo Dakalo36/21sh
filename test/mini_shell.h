@@ -6,7 +6,7 @@
 /*   By: dnematan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 12:48:38 by dnematan          #+#    #+#             */
-/*   Updated: 2016/08/04 18:14:03 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/08/06 17:57:42 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 # include <sys/wait.h>
 
 
-void				msh_loop(char **env);
-int					num_of_builtins(char **split);
 char				*get_path(char **env, char *args);
-char				*get_com(char *str);
 int					msh_cd(char **args, char **env);
+void				msh_echo(char **args, char **env);
+void				msh_env(char **env);
+void				print_only(char	*str);
 int					execute(char **args, char **environ);
-//int					launch_msh(char **args, char **env);
+void				func_print_env(char *args, char **env);
+char				*get_homepath(char *name, char **env);
 
 #endif
