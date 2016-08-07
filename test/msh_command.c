@@ -6,11 +6,11 @@
 /*   By: dnematan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 11:50:24 by dnematan          #+#    #+#             */
-/*   Updated: 2016/08/06 17:57:38 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/08/07 15:52:44 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_shell.h" 
+#include "mini_shell.h"
 
 char	*get_homepath(char *name, char **env)
 {
@@ -48,7 +48,7 @@ void	msh_echo(char **args, char **env)
 		func_print_env(args[1], env);
 	else
 	{
-		while(args[i])
+		while (args[i])
 		{
 			print_only(args[i]);
 			i++;

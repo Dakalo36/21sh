@@ -6,11 +6,11 @@
 /*   By: dnematan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 16:04:45 by dnematan          #+#    #+#             */
-/*   Updated: 2016/08/06 17:35:13 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/08/07 15:51:57 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_shell.h" 
+#include "mini_shell.h"
 
 char	*get_path(char **env, char *args)
 {
@@ -58,21 +58,20 @@ void	print_only(char *str)
 
 void	func_print_env(char *args, char **env)
 {
-	int 	i;
+	int		i;
 	char	*str;
 	int		len;
 
 	i = 0;
 	str = ft_strdup(++args);
 	len = ft_strlen(str);
-	while(env[i])
+	while (env[i])
 	{
 		if (ft_strncmp(str, env[i], len) == 0)
 		{
 			ft_putstr((const char*)get_homepath(str, env));
 			ft_putchar('\n');
 		}
-			
 		i++;
-	}	
+	}
 }

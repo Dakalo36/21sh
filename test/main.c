@@ -6,13 +6,13 @@
 /*   By: dnematan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/04 09:39:52 by dnematan          #+#    #+#             */
-/*   Updated: 2016/08/06 17:57:31 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/08/07 15:51:37 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void	ft_run(char	**args, char **env)
+void	ft_run(char **args, char **env)
 {
 	char	*path;
 
@@ -68,20 +68,29 @@ void	execute_comm(char **args)
 		launch_msh(args, environ);
 }
 
-int	main(void)
+int		main(void)
 {
 	char	*line;
 	char	**args;
+	char	**semi_args;
 
 	while (1)
 	{
 		ft_putstr("21sh$> ");
 		get_next_line(0, &line);
-		args = ft_strsplit(line, ' ');
-		if (ft_strcmp("exit", args[0]) == 0)
-			return(0);
+		if (check_args(line) > 0)
+		{
+			semi_args = ft_strsplit(line, ' ');
+			run_multi_com(semi_args);
+		}
 		else
-			execute_comm(args);
+		{
+			args = ft_strsplit(line, ' ');
+			if (ft_strcmp("exit", args[0]) == 0)
+				return (0);
+			else
+				execute_comm(args);
+		}
 	}
 	return (0);
 }
